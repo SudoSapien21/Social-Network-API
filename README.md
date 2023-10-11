@@ -1,6 +1,8 @@
 # Social-Network-API
 
 
+
+
 ## User Story
 AS A social media startup
 I WANT an API for my social network that uses a NoSQL database
@@ -23,9 +25,11 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ## Table of Contents
 
 - [Installation](#installation)
+- [Usage](#usage)
 - [Technology](#Technology)
 - [License](#license)
 - [Reconigtion](#reconigtion)
+- [Mock Up](#mockup)
 - [Questions](#questions)
 
 
@@ -35,6 +39,13 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 npm init 
 npm install express
 npm install mongoose
+
+
+## Usage
+
+After installing npm packages, the application will be invoked by using the following command:
+
+npm start
 
 
 
@@ -60,6 +71,19 @@ Much appreciattion to BootCamp Instructor
 TAs, and Classmates who have helped with codes 
 and understanding how to approach the assignment.
 
+[Stackoverflow](https://stackoverflow.com/)
+
+## Mock 
+
+The following animation shows GET routes to return all users and all thoughts being tested in Insomnia:
+
+
+
+The following animation shows GET routes to return a single user and a single thought being tested in Insomnia:
+
+The following animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia:
+
+The following animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia:
 
 
 

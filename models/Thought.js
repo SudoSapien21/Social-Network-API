@@ -1,7 +1,7 @@
-const { Schema, model, Types } = require('mongoose');
-const moment = require('moment');
+const { Schema, model } = require('mongoose');
 
-const ReactionSchema = new Schema({
+const reactionSchema = new Schema(
+    {
     reactionId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
@@ -18,15 +18,15 @@ const ReactionSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+        get: timestamp => new Date(timestamp).toISOString(),
     }
 },
     {
-        toJSON: {
-            virtuals: true,
+        toJSON: {        
+            timestamps: true,
             getters: true
         },
-        id: false
+        
     }
 );
 
@@ -40,19 +40,19 @@ const ThoughtSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+        get: (timestamp) => dateFormat(timestamp),
     },
     username: {
         type: String,
         required: true
     },
-    reactions: [ReactionSchema]
+    reactions: [reactionSchema]
 },
 
     {
         toJSON: {
             virtuals: true,
-            getters: true
+            
         },
         id: false
     }
@@ -63,7 +63,7 @@ ThoughtSchema.virtual('reactionCount').get(function () {
 });
 
 // create the Thought model using the ThoughtSchema
-const Thought = model('Thought', ThoughtSchema);
+const Thought = model('thought', ThoughtSchema);
 
 // export the Thought model
 module.exports = Thought;

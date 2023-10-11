@@ -1,46 +1,52 @@
 const { Schema, model } = require('mongoose');
-const moment = require('moment');
 
-const UserSchema = new Schema({
-    username: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
+const userSchema = new Schema(
+    {
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true,   
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            validate: {
+                validator: function (v) {
+                    return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v);
+                },
+                message: props => `${props.value} is not a valid email!`
+            }
+        },
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought',
+            },
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/]
-    },
-    thoughts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Thought'
-        }
-    ],
-    friends: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ]
-},
     {
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            getters: true,
         },
-        id: false
+        id: false,
     }
 );
 
-UserSchema.virtual('friendCount').get(function () {
-    return this.friends.length;
-});
+// Virtual property that gets the length of the user's 'friends' array field
+userSchema
+    .virtual('friendCount').get(function () {
+        return this.friends.length;
+    });
 
-// create the User model using the UserSchema
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 
-// export the User model
 module.exports = User;
