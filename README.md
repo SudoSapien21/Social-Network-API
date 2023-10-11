@@ -75,15 +75,8 @@ and understanding how to approach the assignment.
 
 ## Mock 
 
-The following animation shows GET routes to return all users and all thoughts being tested in Insomnia:
 
 
-
-The following animation shows GET routes to return a single user and a single thought being tested in Insomnia:
-
-The following animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia:
-
-The following animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia:
 
 
 

@@ -10,7 +10,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Get single thought
+  // Get a single thought
   async getSingleThought(req, res) {
     try {
       const thought = await Thought.findOne({
@@ -26,7 +26,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Adding a new thought
+  // Adding  a new thought
   async createThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
