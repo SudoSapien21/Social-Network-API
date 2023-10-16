@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const {Schema} = mongoose;
 
 const userSchema = new Schema(
     {
@@ -12,12 +13,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            validate: {
-                validator: function (v) {
-                    return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v);
-                },
-                message: props => `${props.value} is not a valid email!`
-            }
+            match: [/.+@.+\..+/, 'Please enter a valid email address'],
         },
         thoughts: [
             {
@@ -41,12 +37,10 @@ const userSchema = new Schema(
     }
 );
 
-// Virtual property that gets the length of the user's 'friends' array field
-userSchema
-    .virtual('friendCount').get(function () {
-        return this.friends.length;
-    });
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length;
+  });
 
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
