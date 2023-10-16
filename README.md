@@ -76,7 +76,7 @@ and understanding how to approach the assignment.
 ## Mock 
 
 
-[Video](https://drive.google.com/file/d/1WZg8jMfApAooOUU_v20g-C594CKOs7QX/view)
+[Video] https://drive.google.com/file/d/1G-OGEhKPFiiMyY9FJa0V19adziVK6Ljv/view
 
 
 
